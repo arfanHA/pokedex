@@ -232,7 +232,6 @@ export default {
             url: `/pokemon/?limit=${this.limit}&offset=${this.offset}`,
           };
           this.pokemonTypeData.unshift(allType);
-          console.log(this.pokemonTypeData);
           this.loading = false;
         })
         .catch((err) => {
