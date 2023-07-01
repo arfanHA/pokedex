@@ -1,7 +1,7 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/favorite">Favorite</router-link>
   </nav>
   <router-view/>
 </template>
@@ -25,6 +25,102 @@ nav {
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+}
+
+.home, .favorite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.logo {
+  width: 300px;
+  height: auto;
+}
+
+.pokemon-list {
+  margin-top: 20px;
+  max-width: 500px; /* Adjust the max-width to your preference */
+  width: 100%;
+}
+
+.pokemon-item {
+  margin-bottom: 10px;
+}
+
+.pokemon-name {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  min-width: 150px; /* Adjust the min-width to your preference */
+  text-align: center;
+}
+
+.pokemon-name:hover {
+  background-color: #e0e0e0;
+}
+
+.pokemon-details {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  /* min-width: 200px; */
+  text-align: center;
+}
+
+.pokemon-details h2 {
+  margin-bottom: 10px;
+}
+
+.pokemon-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.pokemon-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-item {
+  margin-bottom: 5px;
+}
+
+.info-label {
+  font-weight: bold;
+}
+
+.loading,
+.error {
+  margin-top: 10px;
+  font-style: italic;
+  text-align: center;
+}
+
+.favorite-star {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.filters {
+  margin: 20px;
+}
+
+@media (max-width: 480px) {
+  .pokemon-name,
+  .pokemon-details {
+    min-width: 100%; /* Set the min-width to 100% for mobile devices */
   }
 }
 </style>
