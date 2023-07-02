@@ -30,6 +30,8 @@ npm run lint
 
 ### Features
 
-![View all Pokemon by type using filters on top of page](./src/assets/home.png)
+View all Pokemon by type using filters on top of page
+![-](./src/assets/home.png)
 
-![ Favourite certain Pokémon using a star icon and see the list of the favourited Pokémon on the 'Favorite' menu.](./src/assets/favorite.png)
+Favourite certain Pokémon using a star icon and see the list of the favourited Pokémon on the 'Favorite' menu.
+![-](./src/assets/favorite.png)
