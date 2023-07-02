@@ -1,7 +1,6 @@
 <template>
   <div class="favorite">
     <h2>Favorite Pokémon</h2>
-      <!-- <li v-for="pokemon in favoritePokemons" :key="pokemon.id">{{ pokemon.name }}</li> -->
       <div class="pokemon-list">
         <div v-for="pokemon in favoritePokemons" :key="pokemon.id" class="pokemon-item">
           <p :hidden="isSelected(pokemon)" class="pokemon-name" @click="togglePokemon(pokemon)">
@@ -36,35 +35,44 @@
 </template>
   
 <script>
-export default {
-  name: 'FavoritePokemons',
-  data() {
-    return {
-      favoritePokemons: [],
-      selectedPokemon: null,
-    };
-  },
-  created() {
-    // Retrieve favorite Pokémon from storage
-    const storedFavoritePokemons = localStorage.getItem('favoritePokemons');
-    if (storedFavoritePokemons) {
-      this.favoritePokemons = JSON.parse(storedFavoritePokemons);
+  export default {
+    name: 'FavoritePokemons',
+    data() {
+      return {
+        // Store the favorite Pokemon list
+        favoritePokemons: [],
+        // Store the currently selected Pokemon
+        selectedPokemon: null,
+      };
+    },
+    created() {
+      // Retrieve favorite Pokémon from storage
+      this.retrieveFavoritePokemons();
+    },
+    methods: {
+      // Toggle the selection of a Pokemon
+      togglePokemon(pokemon) {
+        if (this.selectedPokemon === pokemon) {
+          this.selectedPokemon = null;
+        } else {
+          this.selectedPokemon = pokemon;
+        }
+      },
+      // Check if a Pokemon is currently selected
+      isSelected(pokemon) {
+        return this.selectedPokemon === pokemon;
+      },
+      // Retrieve favorite Pokemon list from local storage
+      retrieveFavoritePokemons() {
+        const storedFavoritePokemons = localStorage.getItem('favoritePokemons');
+        if (storedFavoritePokemons) {
+          this.favoritePokemons = JSON.parse(storedFavoritePokemons);
+        }
+      },
     }
-  },
-  methods: {
-    togglePokemon(pokemon) {
-      if (this.selectedPokemon === pokemon) {
-        this.selectedPokemon = null;
-      } else {
-        this.selectedPokemon = pokemon;
-      }
-    },
-    isSelected(pokemon) {
-      return this.selectedPokemon === pokemon;
-    },
-  }
-};
+  };
 </script>
+  
 
 <style scoped>
 .favorite {

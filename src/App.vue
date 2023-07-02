@@ -42,8 +42,10 @@ nav {
 
 .pokemon-list {
   margin-top: 20px;
-  max-width: 500px; /* Adjust the max-width to your preference */
+  max-width: 500px;
   width: 100%;
+  border-radius: 15px;
+  display: inline-block;
 }
 
 .pokemon-item {
@@ -52,12 +54,12 @@ nav {
 
 .pokemon-name {
   background-color: #f0f0f0;
-  padding: 10px;
+  padding: 10px 0px;
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
   cursor: pointer;
-  min-width: 150px; /* Adjust the min-width to your preference */
+  min-width: 150px;
   text-align: center;
 }
 
@@ -71,7 +73,6 @@ nav {
   background-color: #f0f0f0;
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  /* min-width: 200px; */
   text-align: center;
 }
 
@@ -120,7 +121,7 @@ nav {
 @media (max-width: 480px) {
   .pokemon-name,
   .pokemon-details {
-    min-width: 100%; /* Set the min-width to 100% for mobile devices */
+    min-width: 100%;
   }
 }
 </style>
