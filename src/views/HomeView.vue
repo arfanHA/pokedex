@@ -41,8 +41,14 @@
           </div>
         </div>
       </div>
-      <p class="loading" v-if="loading">Loading...</p>
-      <p class="error" v-if="error">Error loading Pokémon data.</p>
+      <p class="loading" v-if="loading">
+        <span class="loading-spinner"></span>
+        Loading...
+      </p>
+      <p class="error" v-if="error">
+        Error loading Pokémon data.
+        <button class="reload-button" @click="reloadData">Reload</button>
+      </p>
     </div>
   </div>
 </template>
@@ -126,26 +132,34 @@ export default {
     },
     // Filter the Pokemon list based on the selected type
     async filterByType() {
-      try {
-        this.loading = true;
-        const response = await this.$http.get(`type/${this.selectedType}`);
-        const filteredPokemons = response.data.pokemon.map((entry) => entry.pokemon);
+      if (this.selectedType) {
+        try {
+          this.loading = true;
+          const response = await this.$http.get(`type/${this.selectedType}`);
+          const filteredPokemons = response.data.pokemon.map((entry) => entry.pokemon);
 
-        // Fetch detailed information for each filtered Pokémon
-        const detailedPokemons = await Promise.all(filteredPokemons.map(async (pokemon) => {
-          const detailedResponse = await this.$http.get(`pokemon/${pokemon.name}`);
-          const types = detailedResponse.data.types.map((type) => type.type.name);
-          return {
-            ...detailedResponse.data,
-            types,
-          };
-        }));
+          // Fetch detailed information for each filtered Pokémon
+          const detailedPokemons = await Promise.all(filteredPokemons.map(async (pokemon) => {
+            const detailedResponse = await this.$http.get(`pokemon/${pokemon.name}`);
+            const types = detailedResponse.data.types.map((type) => type.type.name);
+            return {
+              ...detailedResponse.data,
+              types,
+            };
+          }));
 
-        // Update the filtered Pokemon list
-        this.pokemons = detailedPokemons;
-        this.loading = false;
-      } catch (error) {
-        this.error = true;
+          // Update the filtered Pokemon list
+          this.pokemons = detailedPokemons;
+          this.loading = false;
+        } catch (error) {
+          this.error = true;
+        }
+      } else {
+        //reset data
+        this.offset =0;
+        this.limit=20;
+        this.pokemons = [];
+        this.loadMorePokemons();
       }
     },
     // Toggle the selection of a Pokemon
@@ -198,6 +212,10 @@ export default {
     getFavoritePokemons() {
       const favoritePokemonsJSON = localStorage.getItem('favoritePokemons');
       return favoritePokemonsJSON ? JSON.parse(favoritePokemonsJSON) : [];
+    },
+    //Refresh the browser
+    reloadData() {
+      location.reload();
     },
   },
   computed: {

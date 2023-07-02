@@ -29,7 +29,6 @@
           </div>
         </div>
       </div>
-
       <li v-if="favoritePokemons.length === 0">No favorite Pokémon yet.</li>
   </div>
 </template>

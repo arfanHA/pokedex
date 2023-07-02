@@ -102,11 +102,59 @@ nav {
   font-weight: bold;
 }
 
-.loading,
 .error {
-  margin-top: 10px;
-  font-style: italic;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #f44336;
+  padding: 10px;
+  border: 2px solid red;
+}
+
+.reload-button {
+  margin-left: 8px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #f44336;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reload-button:hover {
+  background-color: #d32f2f;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: blueviolet;
+  }
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #888;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: loading-spinner-rotate 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes loading-spinner-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .favorite-star {
