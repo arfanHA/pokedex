@@ -85,7 +85,7 @@ nav {
   height: 200px;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .pokemon-info {
